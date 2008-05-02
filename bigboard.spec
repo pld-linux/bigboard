@@ -1,11 +1,11 @@
 Summary:	Sidebar application launcher using mugshot.org
 Name:		bigboard
-Version:	0.5.33
+Version:	0.5.34
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/bigboard/0.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	0b45627aac3cc220609050c091464092
+# Source0-md5:	1cd98f30e5b753fbc7e8486374532e72
 Patch0:		%{name}-pyc.patch
 URL:		http://mugshot.org/
 BuildRequires:	GConf2-devel >= 2.22.0
@@ -51,6 +51,7 @@ mugshot.org to provide an online experience.
 %patch0 -p1
 
 %build
+mkdir m4
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
