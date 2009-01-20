@@ -1,11 +1,11 @@
 Summary:	Sidebar application launcher using mugshot.org
 Name:		bigboard
-Version:	0.5.34
+Version:	0.5.38
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/bigboard/0.5/%{name}-%{version}.tar.bz2
-# Source0-md5:	1cd98f30e5b753fbc7e8486374532e72
+# Source0-md5:	a12ed37d5f83b99decfafcd981d6e146
 Patch0:		%{name}-pyc.patch
 URL:		http://mugshot.org/
 BuildRequires:	GConf2-devel >= 2.22.0
@@ -70,8 +70,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/bigboard/bignative.la
-rm -f $RPM_BUILD_ROOT%{py_sitedir}/bigboard/keybinder/_keybinder.la
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/bigboard/bignative.la
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/bigboard/keybinder/_keybinder.la
+
+# Remove another copy of GPLv2 license
+%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/bigboard/libgmail/COPYING
 
 %py_postclean %{_libdir}/bigboard
 %py_postclean
@@ -87,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/bigboard
 %attr(755,root,root) %{_libdir}/bigboard-applets
 %dir %{_libdir}/bigboard
@@ -94,8 +98,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/bigboard
 %attr(755,root,root) %{py_sitedir}/bigboard/bignative.so
 %{py_sitedir}/bigboard/*.py[co]
-%dir %{py_sitedir}/bigboard/bigbar
-%{py_sitedir}/bigboard/bigbar/*.py[co]
 %dir %{py_sitedir}/bigboard/httplib2
 %{py_sitedir}/bigboard/httplib2/*.py[co]
 %dir %{py_sitedir}/bigboard/keybinder
@@ -103,6 +105,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py_sitedir}/bigboard/keybinder/_keybinder.so
 %dir %{py_sitedir}/bigboard/libbig
 %{py_sitedir}/bigboard/libbig/*.py[co]
+%dir %{py_sitedir}/bigboard/libgmail
+%dir %{py_sitedir}/bigboard/libgmail/ClientCookie
+%{py_sitedir}/bigboard/libgmail/*.py[co]
+%{py_sitedir}/bigboard/libgmail/README
+%{py_sitedir}/bigboard/libgmail/ClientCookie/*.py[co]
 %dir %{py_sitedir}/bigboard/stocks
 %{py_sitedir}/bigboard/stocks/*.xml
 %dir %{py_sitedir}/bigboard/stocks/apps
