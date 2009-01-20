@@ -1,4 +1,5 @@
 Summary:	Sidebar application launcher using mugshot.org
+Summary(pl.UTF-8):	Pasek boczny aplikacji wywołującej używającej mugshot.org
 Name:		bigboard
 Version:	0.5.38
 Release:	1
@@ -46,12 +47,16 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Bigboard is a sidebar and application launcher that works with
 mugshot.org to provide an online experience.
 
+%description -l pl.UTF-8
+Bigboard jest aplikacją wywołującą działającą w formie bocznego paska
+współpracującą z mugshot.org.
+
 %prep
 %setup -q
 %patch0 -p1
 
 %build
-mkdir m4
+%{__mkdir} m4
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
